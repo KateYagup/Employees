@@ -1,6 +1,6 @@
 # Project Employees-App
 
-### [Site link](https://tourmaline-fenglisu-a4f31a.netlify.app/)
+### [Site link](https://employee-yagup.netlify.app/)
 
 Devices support
 - [desktop]
