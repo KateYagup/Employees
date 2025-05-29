@@ -6,7 +6,8 @@ const NothingFound = () => {
     <div className="nothing_page">
       <img
         className="nobody__picture"
-        src="/src/components/nothingFound/search.png"
+        // src="/src/components/nothingFound/search.png"
+        src="../../../public/images/search.png"
         alt="Картинка поиск"
       />
       <div className="nobody_block">
