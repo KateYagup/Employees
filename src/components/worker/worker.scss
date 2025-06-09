@@ -1,12 +1,50 @@
 .userWithBirth {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
+  flex-direction: column;
   &__birth {
   }
 }
+
+.userWithDate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.yearLine {
+  display: flex;
+  justify-content: center;
+  margin: 22px;
+}
+
+// .centerYear {
+//   position: relative;
+//   text-align: center;
+//   font-size: 15px;
+//   font-weight: 500;
+//   color: #c3c3c6;
+// }
+// .centerYear::before {
+//   content: "";
+//   position: absolute;
+//   top: 10px;
+//   display: block;
+//   width: 72px;
+//   height: 1px;
+//   background-color: #c3c3c6;
+//   left: 10px;
+// }
+
+// .centerYear::after {
+//   content: "";
+//   right: 10px;
+//   position: absolute;
+//   top: 10px;
+//   display: block;
+//   width: 72px;
+//   height: 1px;
+//   background-color: #c3c3c6;
+// }
 
 .user {
   height: 80px;
@@ -53,7 +91,7 @@
     color: #55555c;
     margin: 0;
   }
-  
+
   &__birth {
     font-size: 15px;
     font-weight: 400;

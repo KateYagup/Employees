@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SortWindow from '../sortWindow/SortWindow';
 import './navigation.scss';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,6 +16,9 @@ const Navigation = () => {
     { id: 4, pos: 'iO' },
     { id: 5, pos: 'Android' },
   ];
+
+  const positionsButtons1 = ['', 'designer', 'analyst', 'manager', 'io', 'android'];
+
   const handlePosition = e => {
     setSearchParams(prevParams => {
       const params = new URLSearchParams(prevParams);
@@ -27,6 +30,7 @@ const Navigation = () => {
       return params;
     });
   };
+
   const handleSearchText = e => {
     setSearchParams(prevParams => {
       const params = new URLSearchParams(prevParams);
@@ -38,6 +42,23 @@ const Navigation = () => {
       return params;
     });
   };
+
+  let location = useLocation();
+
+  useEffect(() => {
+    if (location.search.includes('position=')) {
+      let activeTab;
+      const beginSymbol = location.search.indexOf('position=');
+      if (beginSymbol !== -1) {
+        activeTab = location.search.slice(beginSymbol + 'position='.length);
+        const endSymbol = activeTab.indexOf('&');
+        if (endSymbol !== -1) activeTab = activeTab.slice(0, endSymbol);
+      }
+      const numberOfPosition = positionsButtons1.indexOf(activeTab);
+      if (activeTab) setActivePosition(numberOfPosition);
+    }
+    
+  }, [location]);
 
   return (
     <div className="navigationBar">

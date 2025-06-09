@@ -10,7 +10,6 @@ const SortWindow = ({ setVisibleSortWindow }) => {
     setValue(event.target.value);
     if (value === '2') {
       setSearchParams({ sortBy: 'byBirth' });
-      console.log(searchParams);
     }
   }
 
@@ -54,6 +53,7 @@ const SortWindow = ({ setVisibleSortWindow }) => {
           <div className="sortWindow__center">
             <input
               className="sortWindow__radio"
+              id="1"
               type="radio"
               name="radio"
               value="1"
@@ -62,13 +62,17 @@ const SortWindow = ({ setVisibleSortWindow }) => {
                 handleSort(e);
               }}
             />
-            <span className="sortWindow__option-text">По алфавиту</span>
+            <label htmlFor="1">
+              {' '}
+              <span className="sortWindow__option-text">По алфавиту</span>
+            </label>
           </div>
         </div>
         <div className="sortWindow__option">
           <div className="sortWindow__center">
             <input
               className="sortWindow__radio"
+              id="2"
               type="radio"
               name="radio"
               value="2"
@@ -77,7 +81,10 @@ const SortWindow = ({ setVisibleSortWindow }) => {
                 handleSort(e);
               }}
             />
-            <span className="sortWindow__option-text">По дню рождения</span>
+            <label htmlFor="2">
+              {' '}
+              <span className="sortWindow__option-text">По дню рождения</span>
+            </label>
           </div>
         </div>
       </div>

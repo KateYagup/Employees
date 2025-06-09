@@ -40,7 +40,8 @@
   padding: 8px 12px;
   text-decoration: none;
   color: #97979b;
-  background-color: #f7f7f8;
+  // background-color: #f7f7f8;
+  background-color: #fff;
   border: none;
 }
 
@@ -55,4 +56,13 @@
   height: 0.33px;
   margin-top: -8px;
   z-index: 10;
+}
+
+.menu {
+  width: 30px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #fff;
 }

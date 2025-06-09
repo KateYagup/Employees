@@ -6,6 +6,7 @@ import Worker from '../worker/Worker';
 import NothingFound from '../nothingFound/NothingFound';
 import Spinner from '../spinner/Spinner';
 import './workersList.scss';
+import moment from 'moment';
 
 const WorkersList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,28 +22,53 @@ const WorkersList = () => {
 
   const filteredWorkers = useMemo(() => {
     const { position: positionQuery, searchText, sortBy } = Object.fromEntries(searchParams);
+   
 
     const filteredData = copyWorkers.filter(
       ({ position, name, tag, email }) =>
         (!positionQuery || position === positionQuery) &&
         (!searchText || [name, tag, email].some(field => field.includes(searchText))),
     );
-
-    return sortBy
-      ? filteredData.sort((a, b) => (a.birthDate > b.birthDate ? 1 : -1))
-      : filteredData;
+    
+    if (!sortBy) return filteredData;
+    if (sortBy) {
+      const res = filteredData.sort((a, b) => (a.birthDate > b.birthDate ? 1 : -1));
+      const groupedByYear = res.reduce((acc, item) => {
+        const key = moment(item.birthDate).format('YYYY');
+        if (!acc[key]) {
+          acc[key] = [];
+        }
+        acc[key].push(item);
+        return acc;
+      }, []);
+  
+      return groupedByYear;
+    }
   }, [searchParams, workers]);
 
   return (
     <div>
       {status === 'in progress' && <Spinner />}
       {filteredWorkers.length === 0 && <NothingFound />}
+      {sortBy &&
+        filteredWorkers.map((worker, key) => {
+          return (
+            <div>
+              <p className="centerYear">{key}</p>
+              {worker.map(worker => 
+              <Worker key={worker.id} sortBy={sortBy} {...worker} />
+              )}
+            </div>
+          );
+        })}
 
-      <ul className="list">
-        {filteredWorkers.map(worker => (
-          <Worker key={worker.id} sortBy={sortBy} {...worker} />
-        ))}
-      </ul>
+      {!sortBy && (
+        <ul className="list">
+          {filteredWorkers.map(worker => (
+            <Worker key={worker.id} sortBy={sortBy} {...worker} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
