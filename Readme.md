@@ -1,6 +1,6 @@
 # Project Employees-App
 
-### [Site link](https://empoyees-yahup.netlify.app/)
+### [Site link](employees-yagup.netlify.app)
 
 Devices support
 - [desktop]
