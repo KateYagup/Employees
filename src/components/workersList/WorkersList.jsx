@@ -9,7 +9,7 @@ import './workersList.scss';
 import moment from 'moment';
 
 const WorkersList = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const workers = useSelector(state => state.workers.workers);
   const status = useSelector(state => state.workers.status);
   const dispatch = useDispatch();

@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import SortWindow from '../sortWindow/SortWindow';
-import './navigation.scss';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import SortWindow from '../sortWindow/SortWindow';
+import positionsButtons from '/config/positionsButtons.js';
+import './navigation.scss';
+
 
 const Navigation = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
   const [visibleSortWindow, setVisibleSortWindow] = useState(false);
   const [activePosition, setActivePosition] = useState('0');
   const [searchText, setSearchText] = useState();
-  const positionsButtons = [
-    { id: '0', pos: 'Все' },
-    { id: '1', pos: 'Designer' },
-    { id: '2', pos: 'Analyst' },
-    { id: '3', pos: 'Manager' },
-    { id: 4, pos: 'iO' },
-    { id: 5, pos: 'Android' },
-  ];
 
   const positionsButtons1 = ['', 'designer', 'analyst', 'manager', 'io', 'android'];
 

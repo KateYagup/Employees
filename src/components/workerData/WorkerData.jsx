@@ -3,23 +3,18 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import './workerData.scss';
-import { monthInRus } from '../../utils/dateUtils.js';
 
 const WorkerData = () => {
-  const { filterOnPosition } = useParams();
+  moment().local('ru');
   const { id } = useParams();
   const employee = useSelector(state => state.workers.workers.find(worker => worker.id === id));
   const { avatar, position, tag, name, phone, birthDate, email } = employee;
   const age = moment(moment()).diff(birthDate, 'years');
-  const birthDay = moment(birthDate).format('YYYY-M-DD');
-  const month = moment(birthDate).format('M');
-  const year = moment(birthDate).format('YYYY');
-  const date = moment(birthDate).format('DD');
 
   return (
-    <div>
+    <div className="workerData">
       <div className="workerData__top">
-        <img src={avatar} alt="" style={{ height: '104px', 'border-radius': '50%' }} />
+        <img className='workerData__img' src={avatar} alt=""  />
         <p className="workerData__name">
           {name} <span className="workerData__tag">{tag}</span>
         </p>
@@ -44,7 +39,7 @@ const WorkerData = () => {
                 </svg>
               </span>
               <span style={{ 'margin-left': '18px' }}>
-                {date} {monthInRus[month]} {year}
+                {moment(birthDate).format('DD MMM YYYY')}
               </span>
             </p>
             <span className="workerData__age">

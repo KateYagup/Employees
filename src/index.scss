@@ -10,17 +10,16 @@ body {
 }
 
 .refresh {
-  // width: 476px;
   max-width: 1280px;
   margin: auto;
   padding: 10px 16px;
 }
 
-// @media screen and (min-width: 600px){
-//   .refresh{
-//       width: 1280px;
-//   }
-// }
+@media screen and (min-width: 600px){
+  .refresh{
+      width: 1280px;
+  }
+}
 
 .linkStyle {
   text-decoration: none;
