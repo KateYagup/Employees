@@ -13,7 +13,6 @@ const WorkersList = () => {
   const workers = useSelector(state => state.workers.workers);
   const status = useSelector(state => state.workers.status);
   const dispatch = useDispatch();
-  let copyWorkers = [...workers];
   const { sortBy } = Object.fromEntries(searchParams);
 
   useEffect(() => {
@@ -24,11 +23,11 @@ const WorkersList = () => {
     const { position: positionQuery, searchText, sortBy } = Object.fromEntries(searchParams);
    
 
-    const filteredData = copyWorkers.filter(
-      ({ position, name, tag, email }) =>
-        (!positionQuery || position === positionQuery) &&
-        (!searchText || [name, tag, email].some(field => field.includes(searchText))),
-    );
+      const filteredData = workers.filter(
+        ({ position, name, tag, email }) =>
+          (!positionQuery || position === positionQuery) &&
+          (!searchText || [name, tag, email].some(field => field.includes(searchText))),
+      );
     
     if (!sortBy) return filteredData;
     if (sortBy) {
